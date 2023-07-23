@@ -190,9 +190,9 @@ actions:
                 echo "tls-port 6380" >> ${globals.redisConfig};
             fi
             if grep -q '^tls-auth-clients' ${globals.redisConfig}; then 
-                sed -ci -e "s|tls-auth-clients.*|tls-auth-clients no|" ${globals.redisConfig};             
+                sed -ci -e "s|tls-auth-clients.*|tls-auth-clients optional|" ${globals.redisConfig};             
             else 
-                echo "tls-auth-clients no" >> ${globals.redisConfig};
+                echo "tls-auth-clients optional" >> ${globals.redisConfig};
             fi
         fi
         systemctl reset-failed
