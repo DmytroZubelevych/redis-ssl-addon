@@ -204,7 +204,7 @@ actions:
   disableSSL:
     - cleanupCustomFWRules: ${targetNodes.nodeGroup}
     - cmd[${targetNodes.nodeGroup}]: |-
-        for i in tls-cert-file tls-key-file tls-ca-cert-file tls-port tls-cluster tls-auth-clients tls-protocols tls-prefer-server-ciphers tls-replication
+        for i in tls-cert-file tls-key-file tls-ca-cert-file tls-port tls-cluster tls-auth-clients tls-protocols tls-replication
         do
             sed -ci -e "s/^${i}/#${i}/" ${globals.redisConfig}
         done
