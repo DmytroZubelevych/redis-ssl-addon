@@ -61,10 +61,16 @@ onAfterServiceScaleOut[${targetNodes.nodeGroup}]:
       affectedNodes: ${event.response.nodes.join(id,)}
 
 onAfterClone:
-  - reInstallSSLPackage
+  - script: return {result:0, jps:MANIFEST};
+  - install [${settings.nodeGroups}]:
+      envName: ${event.response.env.envName}
+      jps: ${response.jps}
+      settings:        
+        nodeGroups: ${settings.nodeGroups}
+        envName: ${settings.envName}
 
 onAfterMigrate:
-  - reInstallSSLPackage
+  - reGenerateCerts
 
 buttons:
   - confirmText: Do you want to reissue the SSL certificates and key (service restart needed)?
@@ -341,12 +347,3 @@ actions:
           }
           else { return { result: 0 }}
         }
-
-  reInstallSSLPackage:
-    - script: return {result:0, jps:MANIFEST};
-    - install [${settings.nodeGroups}]:
-        envName: ${event.response.env.envName}
-        jps: ${response.jps}
-        settings:        
-          nodeGroups: ${settings.nodeGroups}
-          envName: ${settings.envName}
