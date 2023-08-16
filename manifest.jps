@@ -44,4 +44,4 @@ onInstall:
 success:
   email: false
   text: |
-    Your SSL/TLS Encrypted Connection for Redis application has been successfully deployed to ${settings.envName} (target layers: ${settings.nodeGroups}).
+    Your SSL/TLS Encrypted Connection for Redis application has been successfully deployed to ${settings.envName} (target layers: ${settings.nodeGroups}). Please use port 6380 for secure connection.
